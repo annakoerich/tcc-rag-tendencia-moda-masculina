@@ -1,0 +1,112 @@
+[
+  {
+    "id": "trend_linho_01",
+    "termo": "Camisas de Linho e Tecidos Naturais",
+    "categoria": "Camisas",
+    "estilo": "Casual Chic",
+    "sazonalidade": "Primavera/Verão",
+    "nivel_risco": "Baixo",
+    "score_relevancia": 94.0,
+    "fonte": "Relatório WGSN / Redes Sociais",
+    "conteudo": "Camisas de linho puro e misturas de algodão com linho são forte aposta para o público masculino. Crescimento de 45% nas buscas por peças frescas, com preferência por mangas curtas com colarinho cubano (camp collar) e tons claros como areia, off-white e verde sálvia. Baixo risco de estoque para climas quentes."
+  },
+  {
+    "id": "trend_wide_leg_02",
+    "termo": "Calças de Corte Reto e Wide Leg",
+    "categoria": "Calças",
+    "estilo": "Streetwear / Urbano",
+    "sazonalidade": "Atemporal",
+    "nivel_risco": "Moderado",
+    "score_relevancia": 91.0,
+    "fonte": "TikTok Fashion / Google Trends",
+    "conteudo": "A transição da modelagem ajustada para silhuetas mais soltas consolidou-se. Calças com corte reto e wide leg em jeans 100% algodão e sarja estão entre as mais procuradas por jovens adultos (18 a 35 anos). Recomendado testar em lotes médios para cidades do interior onde a adoção é mais gradual."
+  },
+  {
+    "id": "trend_skinny_queda_03",
+    "termo": "Desaceleração de Calças Jeans Skinny",
+    "categoria": "Calças",
+    "estilo": "Casual Tradicional",
+    "sazonalidade": "Atemporal",
+    "nivel_risco": "Alto",
+    "score_relevancia": 32.0,
+    "fonte": "Análise de E-commerce / Varejo",
+    "conteudo": "ALERTA DE ESTOQUE: Calças jeans super skinny apresentam queda de 28% no volume de vendas nos últimos trimestres e aumento de produtos parados em liquidação. Lojistas devem evitar compras em grande escala deste modelo e focar na transição para cortes slim clássicos ou retos."
+  },
+  {
+    "id": "trend_tons_terrosos_04",
+    "termo": "Paleta de Cores Terrosas e Tons Naturais",
+    "categoria": "Geral",
+    "estilo": "Elegante / Casual",
+    "sazonalidade": "Outono/Inverno",
+    "nivel_risco": "Baixo",
+    "score_relevancia": 89.0,
+    "fonte": "Pinterest Predicts / Desfiles Milão",
+    "conteudo": "Tons de marrom chocolate, camelo, bege, terracota e verde oliva dominam as coleções de outono-inverno. Alta taxa de conversão em jaquetas, suéteres e calças chino. Cores fáceis de combinar aumentam a percepção de valor e facilitam a venda casada (cross-selling)."
+  },
+  {
+    "id": "trend_oversized_tee_05",
+    "termo": "Camisetas Oversized em Algodão Pesado",
+    "categoria": "Camisetas",
+    "estilo": "Streetwear / Minimalista",
+    "sazonalidade": "Atemporal",
+    "nivel_risco": "Baixo",
+    "score_relevancia": 88.0,
+    "fonte": "Instagram Reels / Streetstyle",
+    "conteudo": "Camisetas com gramatura pesada (heavyweight cotton 220g+) e gola canelada fechada de 3cm substituíram camisetas básicas finas no gosto do público urbano. O caimento solto e estruturado é visto como premium, permitindo margens de lucro mais atrativas."
+  },
+  {
+    "id": "trend_tenis_minimalista_06",
+    "termo": "Tênis de Couro Minimalista Branco",
+    "categoria": "Calçados",
+    "estilo": "Casual Chic / Alfaiataria Moderna",
+    "sazonalidade": "Atemporal",
+    "nivel_risco": "Baixo",
+    "score_relevancia": 96.0,
+    "fonte": "Mapeamento de Calçados / E-commerce",
+    "conteudo": "O tênis de couro branco liso (low top, sem logos chamativos e solado reto) permanece como calçado essencial da moda masculina moderna. Combina perfeitamente tanto com bermudas de sarja quanto com calças de alfaiataria. Produto de giro rápido e baixo risco de desvalorização."
+  },
+  {
+    "id": "trend_loafers_mocassim_07",
+    "termo": "Mocassins Penny Loafer e Solado Tratorado",
+    "categoria": "Calçados",
+    "estilo": "Smart Casual",
+    "sazonalidade": "Atemporal",
+    "nivel_risco": "Moderado",
+    "score_relevancia": 82.0,
+    "fonte": "Revistas GQ / Mens Fashion Week",
+    "conteudo": "Crescimento expressivo do uso de loafers sem meia ou com meia branca aparente em composições casuais. O modelo com solado tratorado leve atrai o público que quer renovar o visual formal sem perder o conforto."
+  },
+  {
+    "id": "trend_jaquetas_bomber_08",
+    "termo": "Jaquetas Bomber e Sobretudos Leves",
+    "categoria": "Jaquetas",
+    "estilo": "Urbano / Casual",
+    "sazonalidade": "Outono/Inverno",
+    "nivel_risco": "Moderado",
+    "score_relevancia": 85.0,
+    "fonte": "Relatórios de Comércio Varejista",
+    "conteudo": "Jaquetas estilo bomber em camurça, sarja ou nylon fosco são peças-chave para meia-estação. O lojista deve planejar os pedidos no início do outono para não sofrer com o encalhe no final do inverno."
+  },
+  {
+    "id": "trend_bermuda_alfaiataria_09",
+    "termo": "Bermudas Chino e Alfaiatadas Acima do Joelho",
+    "categoria": "Bermudas",
+    "estilo": "Resort / Verão Elegante",
+    "sazonalidade": "Primavera/Verão",
+    "nivel_risco": "Baixo",
+    "score_relevancia": 87.0,
+    "fonte": "Vogue Homem / Lookbooks",
+    "conteudo": "Bermudas com comprimento entre 5 a 7 polegadas (acima do joelho) em linho e sarja com cós elástico ou ajuste tradicional. Substituem as antigas bermudas jeans compridas e bermudas cargo volumosas."
+  },
+  {
+    "id": "trend_easy_care_10",
+    "termo": "Camisas e Tecidos Tecnológicos Antiamassado",
+    "categoria": "Camisas",
+    "estilo": "Business Casual",
+    "sazonalidade": "Atemporal",
+    "nivel_risco": "Baixo",
+    "score_relevancia": 90.0,
+    "fonte": "Mercado Têxtil / Feedbacks de Clientes",
+    "conteudo": "Tecidos que não amassam (easy care / non-iron) com poliamida e elastano têm alta procura para profissionais híbridos. Clientes valorizam praticidade e durabilidade. Excelente opção para fidelização."
+  }
+]

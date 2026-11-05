@@ -1,0 +1,28 @@
+# Framework Web & API
+fastapi>=0.115.0
+uvicorn[standard]>=0.30.0
+pydantic>=2.9.0
+python-dotenv>=1.0.1
+
+# Banco de Dados Relacional
+sqlalchemy>=2.0.30
+psycopg2-binary>=2.9.9
+
+# Banco Vetorial & Busca Semântica
+chromadb>=0.5.0
+
+# IA Generativa & Orquestração RAG
+langchain>=0.3.0
+langchain-core>=0.3.0
+langchain-community>=0.3.0
+langchain-google-genai>=2.0.0
+langchain-openai>=0.2.0
+
+# Utilitários de Rede & HTTP
+httpx>=0.27.0
+requests>=2.32.0
+
+# Qualidade, Linters e Testes
+pytest>=8.3.0
+pytest-cov>=5.0.0
+ruff>=0.6.0

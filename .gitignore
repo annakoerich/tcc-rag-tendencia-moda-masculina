@@ -1,0 +1,41 @@
+# Ambientes Virtuais
+.venv/
+venv/
+ENV/
+env/
+
+# Segredos e Variáveis de Ambiente
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# Caches e arquivos compilados Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Banco de dados vetorial e SQLite local
+data/chroma_db/
+*.sqlite3
+*.sqlite
+
+# Frontend (Node / Vite)
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/coverage/
+
+# IDEs e Sistema Operacional
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log

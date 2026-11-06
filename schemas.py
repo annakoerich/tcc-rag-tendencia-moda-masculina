@@ -4,9 +4,6 @@ from typing import List, Optional
 from pydantic import BaseModel, ConfigDict, Field
 
 
-# ============================
-# Schemas para Produtos
-# ============================
 class ProdutoBase(BaseModel):
     nome: str = Field(..., example="Camisa de Linho Manga Curta")
     categoria: str = Field(..., example="Camisas")
@@ -35,9 +32,6 @@ class ProdutoResponse(ProdutoBase):
     model_config = ConfigDict(from_attributes=True)
 
 
-# ============================
-# Schemas para Tendências
-# ============================
 class TendenciaBase(BaseModel):
     termo: str = Field(..., example="Calça Wide Leg")
     categoria: str = Field(..., example="Calças")
@@ -57,9 +51,6 @@ class TendenciaResponse(TendenciaBase):
     model_config = ConfigDict(from_attributes=True)
 
 
-# ============================
-# Schemas para Recomendações (RAG)
-# ============================
 class RecomendacaoBase(BaseModel):
     produto_id: Optional[int] = None
     titulo: str = Field(..., example="Oportunidade: Reforço em Peças de Linho")
@@ -78,9 +69,6 @@ class RecomendacaoResponse(RecomendacaoBase):
     model_config = ConfigDict(from_attributes=True)
 
 
-# ============================
-# Schemas para Consulta RAG & Dashboard
-# ============================
 class ConsultaRAGRequest(BaseModel):
     pergunta: str = Field(..., example="Devo aumentar o estoque de jaquetas de couro para o inverno?")
     categoria: Optional[str] = Field(None, example="Jaquetas")

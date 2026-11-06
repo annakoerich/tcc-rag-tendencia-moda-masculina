@@ -23,35 +23,28 @@ const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 export default function App() {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [apiOnline, setApiOnline] = useState(false);
-  const [loadingKpis, setLoadingKpis] = useState(true);
 
-  // Estados de dados da API
   const [kpis, setKpis] = useState(null);
   const [produtos, setProdutos] = useState([]);
   const [tendencias, setTendencias] = useState([]);
   const [recomendacoes, setRecomendacoes] = useState([]);
 
-  // Briefing Executivo de IA (Gemini)
   const [briefing, setBriefing] = useState(null);
   const [loadingBriefing, setLoadingBriefing] = useState(false);
 
-  // Estados do Assistente RAG
   const [ragPergunta, setRagPergunta] = useState('');
   const [ragCategoria, setRagCategoria] = useState('');
   const [ragProdutoId, setRagProdutoId] = useState('');
   const [ragLoading, setRagLoading] = useState(false);
   const [ragResultado, setRagResultado] = useState(null);
 
-  // Gerador de Tendências com IA
   const [modalGerarTendencia, setModalGerarTendencia] = useState(false);
   const [temaIA, setTemaIA] = useState('Tendências Emergentes de Moda Masculina 2026');
   const [gerandoTendenciasIA, setGerandoTendenciasIA] = useState(false);
 
-  // Avaliação de Produto com IA
   const [avaliandoProdutoId, setAvaliandoProdutoId] = useState(null);
   const [resultadoAvaliacaoIA, setResultadoAvaliacaoIA] = useState(null);
 
-  // Estados para Novo Produto
   const [modalProduto, setModalProduto] = useState(false);
   const [novoProd, setNovoProd] = useState({
     nome: '',
@@ -101,8 +94,6 @@ export default function App() {
     } catch (err) {
       console.warn('API offline ou erro:', err);
       setApiOnline(false);
-    } finally {
-      setLoadingKpis(false);
     }
   };
 
@@ -241,14 +232,14 @@ export default function App() {
           </div>
           <div>
             <h1 className="brand-title">Moda Inteligente</h1>
-            <p className="brand-subtitle">Sistema 100% IA (Gemini 3.6 Flash & RAG) para Decisões no Varejo Masculino</p>
+            <p className="brand-subtitle">Decisões Estratégicas e Inteligência de Mercado para o Varejo Masculino</p>
           </div>
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
           <div className="api-status" style={{ backgroundColor: apiOnline ? '#ecfdf5' : '#fef2f2', color: apiOnline ? '#059669' : '#dc2626' }}>
             <div className="status-dot" style={{ backgroundColor: apiOnline ? '#10b981' : '#ef4444' }} />
-            {apiOnline ? 'Google Gemini & RAG Ativos' : 'Aguardando API (localhost:8000)'}
+            {apiOnline ? 'Serviço Operacional' : 'Aguardando API'}
           </div>
           <button onClick={carregarDados} className="badge" style={{ background: '#f1f5f9', color: '#475569', cursor: 'pointer', padding: '0.4rem 0.6rem' }}>
             <RefreshCw size={14} /> Atualizar
@@ -284,10 +275,8 @@ export default function App() {
       </nav>
 
       <main className="main-content">
-        {/* ABA 1: DASHBOARD & BRIEFING IA */}
         {activeTab === 'dashboard' && (
           <div>
-            {/* Banner de Briefing Inteligente da Loja gerado pelo Gemini */}
             <div style={{
               background: 'linear-gradient(135deg, #1e1b4b, #312e81)',
               color: 'white',
@@ -342,7 +331,6 @@ export default function App() {
               )}
             </div>
 
-            {/* KPIs */}
             <div className="kpi-grid">
               <div className="kpi-card">
                 <div>
@@ -503,7 +491,6 @@ export default function App() {
           </div>
         )}
 
-        {/* ABA 2: RAG CONSULTOR */}
         {activeTab === 'rag' && (
           <div className="rag-layout">
             <div className="panel-card">
@@ -685,7 +672,6 @@ export default function App() {
           </div>
         )}
 
-        {/* ABA 3: TENDÊNCIAS & DESCOBERTA IA */}
         {activeTab === 'tendencias' && (
           <div className="panel-card">
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '1rem' }}>
@@ -754,7 +740,6 @@ export default function App() {
               </table>
             </div>
 
-            {/* Modal Gerar Tendências com IA */}
             {modalGerarTendencia && (
               <div style={{
                 position: 'fixed',
@@ -813,7 +798,6 @@ export default function App() {
           </div>
         )}
 
-        {/* ABA 4: ESTOQUE & AVALIAÇÃO COM IA */}
         {activeTab === 'produtos' && (
           <div className="panel-card">
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '1rem' }}>
@@ -914,7 +898,6 @@ export default function App() {
               </div>
             )}
 
-            {/* Modal de Resultado da Avaliação por IA */}
             {resultadoAvaliacaoIA && (
               <div style={{
                 position: 'fixed',
@@ -970,7 +953,6 @@ export default function App() {
               </div>
             )}
 
-            {/* Modal Cadastrar Produto */}
             {modalProduto && (
               <div style={{
                 position: 'fixed',

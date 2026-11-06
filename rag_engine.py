@@ -9,7 +9,6 @@ from sqlalchemy.orm import Session
 import models
 import vector_db
 
-# Carrega .env do mesmo diretório
 dotenv_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".env")
 load_dotenv(dotenv_path)
 
@@ -39,14 +38,12 @@ def _extrair_json_resposta(texto: str) -> Optional[Any]:
     try:
         return json.loads(limpo)
     except Exception:
-        # Tenta achar o array [...]
         match_arr = re.search(r"\[.*\]", limpo, re.DOTALL)
         if match_arr:
             try:
                 return json.loads(match_arr.group(0))
             except Exception:
                 pass
-        # Tenta achar o objeto {...}
         match_obj = re.search(r"\{.*\}", limpo, re.DOTALL)
         if match_obj:
             try:
@@ -88,9 +85,6 @@ def sintetizar_resposta_contextual(
     documentos_recuperados: List[Dict[str, Any]],
     produto_info: Optional[Dict[str, Any]] = None
 ) -> Dict[str, Any]:
-    """
-    Sintetizador heurístico de fallback caso o LLM esteja temporariamente indisponível.
-    """
     if not documentos_recuperados:
         return {
             "pergunta": pergunta,
@@ -170,9 +164,6 @@ def executar_rag_llm(
     documentos_recuperados: List[Dict[str, Any]],
     produto_info: Optional[Dict[str, Any]] = None
 ) -> Optional[Dict[str, Any]]:
-    """
-    Executa a chain RAG com IA (Google Gemini ou OpenAI).
-    """
     llm = _obter_llm()
     if not llm:
         return None
@@ -227,13 +218,6 @@ def consultar_rag(
     db: Optional[Session] = None,
     salvar_historico: bool = True
 ) -> Dict[str, Any]:
-    """
-    Função principal do motor RAG:
-    1. Recupera contexto relevante no ChromaDB.
-    2. Obtém dados de produto e estoque se especificado.
-    3. Gera a recomendação contextual com explicabilidade (Gemini).
-    4. Salva a recomendação gerada na tabela 'recomendacoes' do PostgreSQL.
-    """
     docs = vector_db.buscar_tendencias_similares(query=pergunta, n_results=3, categoria=categoria)
 
     produto_info = None
@@ -273,15 +257,7 @@ def consultar_rag(
 
     return resultado
 
-# ================================================================
-# NOVAS FUNCIONALIDADES 100% BASEADAS EM IA (GEMINI)
-# ================================================================
-
 def gerar_novas_tendencias_com_ia(tema: str = "Moda Masculina Atual", db: Optional[Session] = None) -> List[Dict[str, Any]]:
-    """
-    Usa o Gemini AI para analisar e descobrir tendências emergentes no mercado de moda masculina,
-    salvando-as automaticamente no PostgreSQL e indexando no ChromaDB com embeddings!
-    """
     llm = _obter_llm()
     if not llm:
         return []
@@ -321,7 +297,6 @@ Responda EXCLUSIVAMENTE em formato JSON (um array de objetos):
             descricao = t.get("descricao", "")
             fonte = t.get("fonte", "Google Gemini AI Market Intelligence")
 
-            # 1. Salva ou atualiza no PostgreSQL
             if db:
                 existente = db.query(models.TendenciaModel).filter(models.TendenciaModel.termo == termo).first()
                 if not existente:
@@ -341,7 +316,6 @@ Responda EXCLUSIVAMENTE em formato JSON (um array de objetos):
                 else:
                     t["id"] = existente.id
 
-            # 2. Indexa no ChromaDB para enriquecer o RAG
             doc_id = f"ia_trend_{abs(hash(termo))}"
             doc_texto = (
                 f"Tendência: {termo}. Categoria: {categoria}. Sazonalidade: {sazonalidade}. "
@@ -368,17 +342,10 @@ Responda EXCLUSIVAMENTE em formato JSON (um array de objetos):
         return []
 
 def analisar_produto_com_ia(produto_id: int, db: Session) -> Dict[str, Any]:
-    """
-    Avalia um produto específico da loja com Gemini AI:
-    - Cruza os dados do produto com o banco vetorial ChromaDB.
-    - Calcula o score_tendencia real com IA e atualiza o produto no PostgreSQL.
-    - Gera recomendação fundamentada e registra no histórico.
-    """
     prod = db.query(models.ProdutoModel).filter(models.ProdutoModel.id == produto_id).first()
     if not prod:
         return {"erro": "Produto não encontrado"}
 
-    # Busca tendências semelhantes no ChromaDB
     docs = vector_db.buscar_tendencias_similares(query=f"{prod.nome} {prod.categoria}", n_results=3)
     contexto = "\n".join([d["documento"] for d in docs])
 
@@ -413,11 +380,9 @@ Responda ESTRITAMENTE em formato JSON:
         analise = _extrair_json_resposta(texto)
 
         if isinstance(analise, dict):
-            # Atualiza o score do produto no banco
             novo_score = float(analise.get("novo_score_tendencia", prod.tendencia_score))
             prod.tendencia_score = novo_score
 
-            # Registra a recomendação gerada
             nova_rec = models.RecomendacaoModel(
                 produto_id=prod.id,
                 titulo=f"Avaliação IA: {prod.nome}",
@@ -440,10 +405,6 @@ Responda ESTRITAMENTE em formato JSON:
     return {"erro": "Falha na análise com IA"}
 
 def gerar_briefing_executivo_ia(db: Session) -> Dict[str, Any]:
-    """
-    Gera um relatório executivo estratégico do momento da loja combinando
-    o estoque real com as tendências globais mapeadas.
-    """
     llm = _obter_llm()
     if not llm:
         return {

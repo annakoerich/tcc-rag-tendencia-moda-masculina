@@ -7,7 +7,6 @@ from sqlalchemy.pool import StaticPool
 from database import Base
 from main import app, get_db
 
-# Banco SQLite em memória com StaticPool para isolamento total dos testes
 SQLALCHEMY_DATABASE_URL = "sqlite:///:memory:"
 test_engine = create_engine(
     SQLALCHEMY_DATABASE_URL,
@@ -58,7 +57,6 @@ def test_endpoint_health(client):
 
 
 def test_crud_produtos(client):
-    # 1. Cria produto
     novo = {
         "nome": "Camisa Linho Off-White",
         "categoria": "Camisas",
@@ -75,33 +73,27 @@ def test_crud_produtos(client):
     assert prod_criado["nome"] == novo["nome"]
     prod_id = prod_criado["id"]
 
-    # 2. Lista produtos
     res_listar = client.get("/produtos/")
     assert res_listar.status_code == 200
     lista = res_listar.json()
     assert len(lista) == 1
 
-    # 3. Obtém por ID
     res_obter = client.get(f"/produtos/{prod_id}")
     assert res_obter.status_code == 200
     assert res_obter.json()["nome"] == novo["nome"]
 
-    # 4. Atualiza produto
     res_atualizar = client.put(f"/produtos/{prod_id}", json={"quantidade_estoque": 20})
     assert res_atualizar.status_code == 200
     assert res_atualizar.json()["quantidade_estoque"] == 20
 
-    # 5. Deleta produto
     res_deletar = client.delete(f"/produtos/{prod_id}")
     assert res_deletar.status_code == 200
 
-    # 6. Confirma deleção (404)
     res_busca_deletado = client.get(f"/produtos/{prod_id}")
     assert res_busca_deletado.status_code == 404
 
 
 def test_dashboard_kpis(client):
-    # Insere produto de teste com estoque crítico
     client.post("/produtos/", json={
         "nome": "Calça Jeans Slim",
         "categoria": "Calças",

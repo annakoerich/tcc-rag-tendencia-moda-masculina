@@ -1,6 +1,6 @@
 # Moda Inteligente: Sistema RAG para Varejo de Moda Masculina
 
-> **Projeto de Pesquisa Aplicada / Portfólio PAC07**  
+> **Projeto de Pesquisa Aplicada / Portfólio de Engenharia de Software**  
 > **Autora:** Anna Koerich (Católica SC)  
 > **Tema:** Arquitetura baseada em *Retrieval-Augmented Generation* para análise de tendências e geração de recomendações no varejo de moda masculina.
 
@@ -54,6 +54,7 @@ projeto-moda/
 │   └── chroma_db/             # Banco vetorial persistente do ChromaDB
 ├── docs/
 │   ├── WIKI_ARQUITETURA.md    # Documentação C4 Model, DER e fluxos do RAG
+│   ├── adr-001-hospedagem-nuvem.md # ADR de decisão de arquitetura em nuvem (Azure VM + Compose)
 │   └── conformidade_lgpd_etica.md # Declaração de conformidade LGPD e ética em IA
 ├── frontend/                  # Aplicação Web em React 19 (Vite + Nginx)
 │   ├── src/
@@ -70,6 +71,7 @@ projeto-moda/
 │   └── test_vector_db.py      # Testes de busca vetorial no ChromaDB
 ├── .env.example               # Modelo documentado de variáveis de ambiente
 ├── .gitignore                 # Regras de proteção de credenciais e caches
+├── Caddyfile                  # Servidor Caddy para HTTPS automático Let's Encrypt
 ├── database.py                # Conexão SQLAlchemy com PostgreSQL
 ├── models.py                  # Modelos relacionais (Produto, Tendencia, Recomendacao)
 ├── schemas.py                 # Schemas Pydantic v2 para validação da API
@@ -81,7 +83,7 @@ projeto-moda/
 ├── pyproject.toml             # Configurações do Ruff (linter) e Pytest
 ├── requirements.txt           # Dependências Python pinned
 ├── Dockerfile                 # Conteinerização do backend FastAPI
-└── docker-compose.yml         # Orquestração de containers (Postgres, API, Frontend)
+└── docker-compose.yml         # Orquestração de containers (Postgres, API, Frontend, Caddy)
 ```
 
 ---

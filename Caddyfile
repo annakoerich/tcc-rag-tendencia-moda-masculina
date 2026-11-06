@@ -1,0 +1,7 @@
+{
+    email {$ACME_EMAIL:admin@catolicasc.edu.br}
+}
+
+{$DOMAIN:localhost} {
+    reverse_proxy frontend:80
+}

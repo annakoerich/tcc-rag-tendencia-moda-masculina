@@ -4,10 +4,8 @@ from dotenv import load_dotenv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
 
-# Carrega as variáveis do arquivo .env
 load_dotenv()
 
-# Obtém a URL do banco do .env ou usa o padrão local
 SQLALCHEMY_DATABASE_URL = os.getenv(
     "DATABASE_URL",
     "postgresql://postgres:admin@localhost:5432/moda_db"

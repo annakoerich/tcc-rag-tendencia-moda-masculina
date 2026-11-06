@@ -49,11 +49,32 @@ services:
     restart: unless-stopped
     depends_on:
       - backend
+    expose:
+      - "80"
+
+  caddy:
+    image: caddy:2-alpine
+    container_name: moda_caddy
+    restart: unless-stopped
     ports:
       - "80:80"
+      - "443:443"
+    environment:
+      - DOMAIN=${DOMAIN:-localhost}
+      - ACME_EMAIL=${ACME_EMAIL:-admin@catolicasc.edu.br}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - frontend
 
 volumes:
   postgres_data:
     name: moda_postgres_data
   chroma_data:
     name: moda_chroma_data
+  caddy_data:
+    name: moda_caddy_data
+  caddy_config:
+    name: moda_caddy_config

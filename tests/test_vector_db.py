@@ -2,7 +2,6 @@ import vector_db
 
 
 def test_buscar_tendencias_similares_retorna_lista():
-    # Realiza uma busca semântica básica
     resultados = vector_db.buscar_tendencias_similares(
         query="camisa de linho leve para o verão",
         n_results=2

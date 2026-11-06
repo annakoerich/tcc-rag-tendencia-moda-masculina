@@ -62,3 +62,31 @@ jobs:
       - name: Compilar Frontend (Build de Produção)
         working-directory: ./frontend
         run: npm run build
+
+  deploy:
+    name: Deploy Contínuo (Azure VM)
+    needs: [backend-quality, frontend-quality]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verificar configuração de credenciais Azure
+        id: check-secrets
+        run: |
+          if [ -n "${{ secrets.AZURE_VM_HOST }}" ]; then
+            echo "configured=true" >> $GITHUB_OUTPUT
+          else
+            echo "configured=false" >> $GITHUB_OUTPUT
+            echo "Aguardando configuração dos secrets AZURE_VM_HOST para deploy remoto."
+          fi
+
+      - name: Atualizar contêineres na VM Azure
+        if: steps.check-secrets.outputs.configured == 'true'
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.AZURE_VM_HOST }}
+          username: ${{ secrets.AZURE_VM_USER }}
+          key: ${{ secrets.AZURE_SSH_PRIVATE_KEY }}
+          script: |
+            cd /home/azureuser/projeto-moda
+            git pull origin main
+            docker compose up -d --build
